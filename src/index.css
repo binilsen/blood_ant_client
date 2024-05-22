@@ -1,0 +1,5 @@
+html,
+body, #root {
+  font-family: Hack, monospace;
+  min-height: 90vh;
+}
