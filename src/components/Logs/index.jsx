@@ -11,7 +11,9 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
 } from "@mui/material";
@@ -21,6 +23,7 @@ import { Delete, Edit } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import LogChart from "../shared/LogChart";
 
 const Logs = () => {
   const appFilters = useQuery(["loadFilters"], loadFilters, {
@@ -32,13 +35,10 @@ const Logs = () => {
     session: "",
     result: "",
     tag: "",
+    page: 1,
   });
-  const { data, refetch } = useQuery(
-    ["userLogs", params],
-    () => userLogs({ params: params, page: 1 }),
-    {
-      select: (data) => data.data,
-    }
+  const { data, refetch } = useQuery(["userLogs", params], () =>
+    userLogs({ params: params })
   );
 
   const deleteLog = useMutation(["deleteLog"], userLogDelete, {
@@ -54,8 +54,14 @@ const Logs = () => {
     });
 
   const formatDate = (date) => dayjs(date).format("hh:MM A | dddd MMM YYYY");
+
+  const handlePageChange = (event, val) =>
+    setParams((prev) => {
+      return { ...prev, page: parseInt(val, 10) + 1 };
+    });
+
   return (
-    <>
+    <Stack spacing={3}>
       <Typography variant="h5">Recent Logs</Typography>
       {appFilters.data && (
         <Grid container p={2}>
@@ -147,7 +153,7 @@ const Logs = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.map((log) => (
+            {data?.data?.map((log) => (
               <TableRow
                 key={log.id}
                 sx={{
@@ -185,9 +191,24 @@ const Logs = () => {
               </TableRow>
             ))}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              {data && (
+                <TablePagination
+                  rowsPerPageOptions={[]}
+                  rowsPerPage={parseInt(data.headers.get("page-items"))}
+                  count={parseInt(data.headers.get("total-count"))}
+                  page={params.page - 1}
+                  onPageChange={handlePageChange}
+                />
+              )}
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
-    </>
+      <hr />
+      <LogChart />
+    </Stack>
   );
 };
 

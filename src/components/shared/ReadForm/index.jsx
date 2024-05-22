@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import AppSelect from "../AppSelect";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { loadFilters, userLogAdd } from "../../../services";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -25,6 +25,8 @@ const VALIDATOR = yup.object({
     .max(1000, "Enter a valid value."),
 });
 const ReadForm = () => {
+  const qClient = useQueryClient();
+
   const { data } = useQuery(["loadFilters"], loadFilters, {
     select: (data) => data.data,
     refetchOnWindowFocus: false,
@@ -47,8 +49,13 @@ const ReadForm = () => {
   });
 
   const { mutate } = useMutation(["addLog"], userLogAdd, {
-    onSuccess: () => reset(),
-    onError: () => toast("Something went wrong"),
+    onSuccess: () => {
+      toast.success("Log updated!");
+      qClient.invalidateQueries(["loadChart"]);
+      qClient.invalidateQueries(["loadActiveLogs"]);
+      reset();
+    },
+    onError: () => toast.error("Something went wrong"),
   });
 
   return (

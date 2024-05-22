@@ -7,12 +7,14 @@ const userLogin = (data) => service.post("/sign_in", data);
 const userProfile = () => service.get("/profile");
 const userLogout = (id) => service.delete(`/sessions/${id}`);
 const userLogAdd = (data) => service.post("/logs", { log: data });
-const userLogs = ({ params, page }) =>
-  service.get("/logs", { params: { ...params, page: page } });
+const userLogs = ({ params }) =>
+  service.get("/logs", { params: { ...params } });
 const userLogDelete = (id) => service.delete(`/logs/${id}`);
+const userActiveLogs = () => service.get("/logs/active");
 
 export {
   userLogDelete,
+  userActiveLogs,
   userLogs,
   userRegister,
   loadFilters,
