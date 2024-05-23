@@ -112,7 +112,7 @@ const LogChart = () => {
             margin="auto"
           >
             <LineChart
-              series={[{ data: chartData.values, label: "mg" }]}
+              series={[{ data: chartData.values, label: "mg/dL " }]}
               xAxis={[{ scaleType: "point", data: chartData.dates }]}
             />
           </Box>

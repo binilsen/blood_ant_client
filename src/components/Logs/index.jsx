@@ -165,7 +165,7 @@ const Logs = () => {
                   {log.result}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {log.value}
+                  {log.value} mg/dL
                 </TableCell>
                 <TableCell align="right">{log.session}</TableCell>
                 <TableCell align="right">{log.remark || "N/A"}</TableCell>
