@@ -28,7 +28,7 @@ const ActiveLogs = () => {
         Today&apos;s Log
       </Typography>
 
-      <Grid container>
+      <Grid container justifyContent="center">
         {data &&
           data.map((log) => (
             <Grid key={log.id} item sm={12} md={6} xs={12} xl={4} p={1}>
@@ -43,7 +43,7 @@ const ActiveLogs = () => {
                         alignItems="center"
                       >
                         <Typography fontWeight="bolder" variant="h5">
-                          {log.value}
+                          {log.value} mg/dL
                         </Typography>
                         <Chip label={log.result} color="warning" size="small" />
                       </Stack>
