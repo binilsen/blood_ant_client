@@ -3,7 +3,7 @@ import ReadForm from "../shared/ReadForm";
 import ActiveLogs from "../ActiveLogs";
 const Dashboard = () => {
   return (
-    <Stack spacing={5}>
+    <Stack spacing={5} p={3}>
       <ReadForm />
      <ActiveLogs/>
     </Stack>

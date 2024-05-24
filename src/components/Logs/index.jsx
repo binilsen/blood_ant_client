@@ -24,12 +24,15 @@ import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import LogChart from "../shared/LogChart";
+import EditLog from "../EditLog";
 
 const Logs = () => {
   const appFilters = useQuery(["loadFilters"], loadFilters, {
     select: (data) => data.data,
     refetchOnWindowFocus: false,
   });
+
+  const [editLogId, setEditLogId] = useState();
 
   const [params, setParams] = useState({
     session: "",
@@ -60,8 +63,12 @@ const Logs = () => {
       return { ...prev, page: parseInt(val, 10) + 1 };
     });
 
+  const closeHandler = () => {
+    setEditLogId(null);
+  };
+
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} p={3}>
       <Typography variant="h5">Recent Logs</Typography>
       {appFilters.data && (
         <Grid container p={2}>
@@ -183,7 +190,11 @@ const Logs = () => {
                     >
                       <Delete />
                     </IconButton>
-                    <IconButton size="small" color="error">
+                    <IconButton
+                      size="small"
+                      color="error"
+                      onClick={() => setEditLogId(log.id)}
+                    >
                       <Edit />
                     </IconButton>
                   </Stack>
@@ -208,6 +219,11 @@ const Logs = () => {
       </TableContainer>
       <hr />
       <LogChart />
+      <EditLog
+        open={Boolean(editLogId)}
+        closeHandler={closeHandler}
+        id={editLogId}
+      />
     </Stack>
   );
 };
