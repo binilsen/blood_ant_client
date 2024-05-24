@@ -55,7 +55,7 @@ const ReadForm = () => {
       qClient.invalidateQueries(["loadActiveLogs"]);
       reset();
     },
-    onError: () => toast.error("Something went wrong"),
+    onError: (errors) => toast.error(errors.response.data[0]),
   });
 
   return (

@@ -11,9 +11,17 @@ const userLogs = ({ params }) =>
   service.get("/logs", { params: { ...params } });
 const userLogDelete = (id) => service.delete(`/logs/${id}`);
 const userActiveLogs = () => service.get("/logs/active");
+const userLogUpdate = ({ id, data }) =>
+  service.patch(`/logs/${id}`, { log: data });
+const userLog = (id) => service.get(`/logs/${id}`);
+const userReportGenerate = (params) =>
+  service.post("/logs/generate_report", {}, { ...params });
 
 export {
+  userReportGenerate,
   userLogDelete,
+  userLog,
+  userLogUpdate,
   userActiveLogs,
   userLogs,
   userRegister,

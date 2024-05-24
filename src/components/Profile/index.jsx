@@ -9,7 +9,7 @@ const Profile = () => {
     select: (data) => data.data,
   });
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} p={3}>
       <Typography variant="title1">Basic Info</Typography>
       <hr />
       <Grid container>
