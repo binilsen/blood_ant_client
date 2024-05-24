@@ -16,8 +16,18 @@ const userLogUpdate = ({ id, data }) =>
 const userLog = (id) => service.get(`/logs/${id}`);
 const userReportGenerate = (params) =>
   service.post("/logs/generate_report", {}, { ...params });
-
+const userActiveDose = () => service.get("/profile/active_dose");
+const userDoses = () => service.get("/doses");
+const userDoseAdd = (data) => service.post("/doses", { dose: { ...data } });
+const userDose = (id) => service.get(`/doses/${id}`);
+const userDoseEdit = ({ id, data }) =>
+  service.patch(`/doses/${id}`, { dose: { ...data } });
 export {
+  userDose,
+  userDoseEdit,
+  userDoses,
+  userDoseAdd,
+  userActiveDose,
   userReportGenerate,
   userLogDelete,
   userLog,
