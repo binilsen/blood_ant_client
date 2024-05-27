@@ -5,6 +5,7 @@ import {
   Logout,
   Person,
   Settings as SettingsIcon,
+  Vaccines,
 } from "@mui/icons-material";
 import { Box, Stack, Tab, Tabs } from "@mui/material";
 import TabPanel from "./components/shared/Tab";
@@ -18,6 +19,7 @@ import AppLogout from "./components/Logout";
 import { useNavigate } from "react-router-dom";
 import Logs from "./components/Logs";
 import Settings from "./components/Settings";
+import Dose from "./components/Dose";
 
 function App() {
   const [value, setValue] = useState(
@@ -65,6 +67,7 @@ function App() {
           <Tab label={"Profile"} icon={<Person />} />
           <Tab label={"Home"} icon={<Home />} />
           <Tab label="History" icon={<History />} />
+          <Tab label="Insulin Log" icon={<Vaccines />} />
           <Tab label={"Settings"} icon={<SettingsIcon />} />
           <Tab label={"Logout"} icon={<Logout />} />
         </Tabs>
@@ -79,9 +82,12 @@ function App() {
         <Logs />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Settings />
+        <Dose />
       </TabPanel>
       <TabPanel value={value} index={4}>
+        <Settings />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
         <AppLogout />
       </TabPanel>
     </Box>
