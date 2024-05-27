@@ -40,7 +40,7 @@ function App() {
   });
 
   const handleChange = (event, val) => {
-    if (val != 4) localStorage.setItem("ba-active-tab", val);
+    if (val != 5) localStorage.setItem("ba-active-tab", val);
     setValue(val);
   };
   return (
