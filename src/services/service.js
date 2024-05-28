@@ -6,8 +6,9 @@ const newAxios = axios.create({
 // Add a request interceptor
 newAxios.interceptors.request.use(
   function (config) {
-    const token = `Token ${localStorage.getItem("ba-token")}`;
-    config.headers.Authorization = token;
+    const token = localStorage.getItem("ba-token");
+    if (token) config.headers.Authorization = token;
+    config.headers["Content-Type"] = "application/json";
 
     return config;
   },

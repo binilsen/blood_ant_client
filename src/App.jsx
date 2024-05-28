@@ -26,10 +26,13 @@ function App() {
     parseInt(localStorage.getItem("ba-active-tab")) || 0
   );
   const navigate = useNavigate();
-  const { isLogged, login, logout } = useAuthStore();
+  const { isLogged, login, logout, setUser } = useAuthStore();
 
   const { isLoading } = useQuery(["loadProfile"], userProfile, {
-    onSuccess: (data) => login(data.user, data.session),
+    onSuccess: (data) => {
+      login();
+      setUser(data.user);
+    },
     onError: () => {
       logout();
       navigate("/login", { replace: true });

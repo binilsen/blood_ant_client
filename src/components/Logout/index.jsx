@@ -1,15 +1,13 @@
 import { ExitToApp } from "@mui/icons-material";
 import { Button, Stack, Typography } from "@mui/material";
 import { useMutation } from "react-query";
-import { useAuthStore } from "../../stores/auth";
 import { userLogout } from "../../services";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Logout = () => {
-  const { session } = useAuthStore();
   const navigate = useNavigate();
-  const { mutate } = useMutation(["userLogout"], () => userLogout(session.id), {
+  const { mutate } = useMutation(["userLogout"], userLogout, {
     onSuccess: () => {
       navigate("/login", { replace: true });
       toast.success("Logged out!");

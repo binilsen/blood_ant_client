@@ -18,8 +18,9 @@ const Login = () => {
   } = useForm({ mode: "onChange" });
   const { mutate } = useMutation(["loginUser"], userLogin, {
     onSuccess: (data) => {
-      localStorage.setItem("ba-token", data.headers.get("x-session-token"));
-      login(data.data.user, data.data.session);
+      console.log(data.headers);
+      localStorage.setItem("ba-token", data.headers.get("authorization"));
+      login();
       reset();
       toast.success("Logged in!");
       navigate("/", { replace: true });
