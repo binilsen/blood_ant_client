@@ -26,20 +26,20 @@ function App() {
     parseInt(localStorage.getItem("ba-active-tab")) || 0
   );
   const navigate = useNavigate();
-  const { isLogged, login, logout, setUser } = useAuthStore();
+  const { login, logout, setUser } = useAuthStore();
 
   const { isLoading } = useQuery(["loadProfile"], userProfile, {
     onSuccess: (data) => {
-      login();
-      setUser(data.user);
+      if (!data.headers.get("authorization")) return;
+      login(data.headers.get("authorization"));
+      setUser(data.data.user);
     },
     onError: () => {
       logout();
       navigate("/login", { replace: true });
     },
     retry: false,
-    select: (data) => data.data,
-    enabled: !isLogged,
+    refetchOnWindowFocus: false,
   });
 
   const handleChange = (event, val) => {

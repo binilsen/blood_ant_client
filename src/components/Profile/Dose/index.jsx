@@ -15,7 +15,6 @@ const Dose = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
-  console.log(data);
   return (
     <Stack>
       {data && (

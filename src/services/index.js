@@ -25,8 +25,14 @@ const userDoseEdit = ({ id, data }) =>
 const userDoseDelete = (id) => service.delete(`/doses/${id}`);
 const userAccountVerify = (token) =>
   service.post("/verify-account", { key: token });
+
+const passwordlessRequest = (data) => service.post("/email-auth-request", data);
+const passwordlessAuth = (data) => service.post("/email-auth", data);
+
 export {
   userAccountVerify,
+  passwordlessAuth,
+  passwordlessRequest,
   userDoseDelete,
   userDose,
   userDoseEdit,

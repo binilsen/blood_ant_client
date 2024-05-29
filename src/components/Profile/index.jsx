@@ -8,6 +8,7 @@ import Dose from "./Dose";
 const Profile = () => {
   const { data } = useQuery(["loadProfile"], userProfile, {
     select: (data) => data.data,
+    refetchOnWindowFocus: false
   });
   return (
     <Stack spacing={2} p={3}>

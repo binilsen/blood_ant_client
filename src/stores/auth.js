@@ -10,7 +10,8 @@ export const useAuthStore = create((set) => ({
       user: null,
     }));
   },
-  login: () => {
+  login: (token) => {
+    localStorage.setItem("ba-token", token);
     return set(() => ({
       isLogged: true,
     }));

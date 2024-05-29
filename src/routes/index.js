@@ -3,6 +3,7 @@ import App from "../App";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import AccountVerify from "../components/AccountVerify";
+import EmailAuth from "../components/EmailAuth";
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -20,4 +21,5 @@ export const routes = createBrowserRouter([
     path: "/verify-account",
     Component: AccountVerify,
   },
+  { path: "/auth", Component: EmailAuth },
 ]);
