@@ -7,6 +7,7 @@ import { userRegister } from "../../services";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AppInput from "../shared/AppInput";
+import { toast } from "react-toastify";
 
 const GENDER = ["male", "female", "other"];
 const TYPE = ["one", "two"];
@@ -28,7 +29,7 @@ const VALIDATOR = yup.object({
     .string()
     .required("Enter a valid password.")
     .min(8, "Atleast 8 character required."),
-  password_confirmation: yup
+  "password-confirm": yup
     .string()
     .required("Password does not match")
     .oneOf([yup.ref("password")], "Password does not match."),
@@ -52,10 +53,14 @@ const Register = () => {
   });
 
   const { mutate } = useMutation(["registerUser"], userRegister, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       reset();
-      navigate("/login", { replace: true });
+      toast.success(data.data);
+      setTimeout(() => {
+        navigate("/login", { replace: true });
+      }, 1000);
     },
+    onError: (errors) => toast.error(errors.response.data.error),
   });
 
   return (
@@ -114,7 +119,7 @@ const Register = () => {
         <AppInput
           label="Confim Password"
           control={register}
-          name="password_confirmation"
+          name="password-confirm"
           errors={errors}
         />
         <Button type="submit" variant="outlined">

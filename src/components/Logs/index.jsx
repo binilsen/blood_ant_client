@@ -41,7 +41,9 @@ const Logs = () => {
     page: 1,
   });
   const { data, refetch } = useQuery(["userLogs", params], () =>
-    userLogs({ params: params })
+    userLogs({ params: params }),{
+      refetchOnWindowFocus: false
+    }
   );
 
   const deleteLog = useMutation(["deleteLog"], userLogDelete, {

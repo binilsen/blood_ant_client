@@ -1,11 +1,11 @@
 import service from "./service";
 
-const userRegister = (data) => service.post("/sign_up", data);
+const userRegister = (data) => service.post("/create-account", data);
 const loadFilters = () => service.get("/logs/filters");
 const submitLog = (data) => service.post("/logs", data);
-const userLogin = (data) => service.post("/sign_in", data);
+const userLogin = (data) => service.post("/login", data);
 const userProfile = () => service.get("/profile");
-const userLogout = (id) => service.delete(`/sessions/${id}`);
+const userLogout = () => service.post(`/logout`, { data: null });
 const userLogAdd = (data) => service.post("/logs", { log: data });
 const userLogs = ({ params }) =>
   service.get("/logs", { params: { ...params } });
@@ -22,7 +22,18 @@ const userDoseAdd = (data) => service.post("/doses", { dose: { ...data } });
 const userDose = (id) => service.get(`/doses/${id}`);
 const userDoseEdit = ({ id, data }) =>
   service.patch(`/doses/${id}`, { dose: { ...data } });
+const userDoseDelete = (id) => service.delete(`/doses/${id}`);
+const userAccountVerify = (token) =>
+  service.post("/verify-account", { key: token });
+
+const passwordlessRequest = (data) => service.post("/email-auth-request", data);
+const passwordlessAuth = (data) => service.post("/email-auth", data);
+
 export {
+  userAccountVerify,
+  passwordlessAuth,
+  passwordlessRequest,
+  userDoseDelete,
   userDose,
   userDoseEdit,
   userDoses,

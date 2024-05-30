@@ -11,22 +11,31 @@ import {
   IconButton,
   TableFooter,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { userDoses } from "../../../services";
+import { useMutation, useQuery } from "react-query";
+import { userDoseDelete, userDoses } from "../../../services";
 import { Delete, Edit } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { useState } from "react";
 import ManageDose from "../../ManageDose";
+import { toast } from "react-toastify";
 
 const Doses = () => {
-  const { data } = useQuery(["loadDoses"], userDoses, {
+  const { data, refetch } = useQuery(["loadDoses"], userDoses, {
     select: (data) => data.data,
     refetchOnWindowFocus: false,
+  });
+
+  const { mutate } = useMutation(["userDoseDelete"], userDoseDelete, {
+    onSuccess: () => {
+      toast.success("Dose Deleted!");
+      refetch()
+    },
   });
   const [editDoseId, setEditDoseId] = useState();
   const formatDate = (date) => dayjs(date).format("dddd MMM YYYY");
 
   const handleClose = () => setEditDoseId();
+  const deleteDose = (id) => mutate(id);
   return (
     <Stack spacing={3} p={3}>
       <Typography variant="h5">Recent Doses</Typography>
@@ -58,14 +67,18 @@ const Doses = () => {
                 <TableCell align="right">{dose.afternoon} unit</TableCell>
                 <TableCell align="right">{dose.evening} unit</TableCell>{" "}
                 <TableCell align="right">{dose.night} unit</TableCell>
-                <TableCell align="right">{dose.remarks || 'N/A'}</TableCell>
+                <TableCell align="right">{dose.remarks || "N/A"}</TableCell>
                 <TableCell align="right">{dose.status}</TableCell>
                 <TableCell align="right">
                   {formatDate(dose.created_at)}
                 </TableCell>
                 <TableCell align="right">
                   <Stack direction="row" justifyContent="end">
-                    <IconButton size="small" color="error">
+                    <IconButton
+                      onClick={() => deleteDose(dose.id)}
+                      size="small"
+                      color="error"
+                    >
                       <Delete />
                     </IconButton>
                     <IconButton

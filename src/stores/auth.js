@@ -3,7 +3,6 @@ import { create } from "zustand";
 export const useAuthStore = create((set) => ({
   isLogged: false,
   user: null,
-  session: null,
   logout: () => {
     localStorage.removeItem("ba-token");
     return set(() => ({
@@ -11,11 +10,15 @@ export const useAuthStore = create((set) => ({
       user: null,
     }));
   },
-  login: (user, session) => {
-    set(() => ({
+  login: (token) => {
+    localStorage.setItem("ba-token", token);
+    return set(() => ({
       isLogged: true,
+    }));
+  },
+  setUser: (user) => {
+    return set(() => ({
       user: user,
-      session: session,
     }));
   },
 }));
