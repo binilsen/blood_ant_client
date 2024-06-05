@@ -1,6 +1,7 @@
 import { Edit } from "@mui/icons-material";
 import { Grid, IconButton, Typography } from "@mui/material";
 import propTypes from "prop-types";
+import { ageCalculator } from "../../utils";
 
 const Basic = ({ data }) => {
   return (
@@ -37,7 +38,9 @@ const Basic = ({ data }) => {
         p={1}
         sx={{ display: "flex", justifyContent: { md: "end", sm: "start" } }}
       >
-        <Typography variant="overline">Lorem, ipsum dolor.</Typography>
+        <Typography variant="overline">
+          {ageCalculator(data?.dob) || "N/A"}
+        </Typography>
       </Grid>
       <Grid item md={6} p={1}>
         <Typography variant="title2">DOB</Typography>

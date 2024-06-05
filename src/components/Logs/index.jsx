@@ -70,7 +70,7 @@ const Logs = () => {
   };
 
   return (
-    <Stack spacing={3} p={3}>
+    <>
       <Typography variant="h5">Recent Logs</Typography>
       {appFilters.data && (
         <Grid container p={2}>
@@ -226,7 +226,7 @@ const Logs = () => {
         closeHandler={closeHandler}
         id={editLogId}
       />
-    </Stack>
+    </>
   );
 };
 

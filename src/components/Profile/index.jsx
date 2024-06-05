@@ -1,4 +1,4 @@
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import Basic from "./Basic";
 import Medical from "./Medical";
 import { useQuery } from "react-query";
@@ -11,7 +11,7 @@ const Profile = () => {
     refetchOnWindowFocus: false
   });
   return (
-    <Stack spacing={2} p={3}>
+    <>
       <Typography variant="title1">Insulin Dose</Typography>
       <hr />
       <Grid container>
@@ -33,7 +33,7 @@ const Profile = () => {
           <Paper elevation={4}>{data && <Medical data={data.user} />}</Paper>
         </Grid>
       </Grid>
-    </Stack>
+    </>
   );
 };
 export default Profile;

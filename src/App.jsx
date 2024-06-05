@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import Logs from "./components/Logs";
 import Settings from "./components/Settings";
 import Dose from "./components/Dose";
+import { useLoader } from "./stores/loader";
 
 function App() {
   const [value, setValue] = useState(
@@ -27,6 +28,7 @@ function App() {
   );
   const navigate = useNavigate();
   const { login, logout, setUser } = useAuthStore();
+  const { visible } = useLoader();
 
   const { isLoading } = useQuery(["loadProfile"], userProfile, {
     onSuccess: (data) => {
@@ -75,24 +77,28 @@ function App() {
           <Tab label={"Logout"} icon={<Logout />} />
         </Tabs>
       )}
-      <TabPanel value={value} index={0}>
-        <Profile />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Dashboard />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Logs />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <Dose />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        <Settings />
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        <AppLogout />
-      </TabPanel>
+      {!visible && (
+        <Stack spacing={2}>
+          <TabPanel value={value} index={0}>
+            <Profile />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Dashboard />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Logs />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Dose />
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            <Settings />
+          </TabPanel>
+          <TabPanel value={value} index={5}>
+            <AppLogout />
+          </TabPanel>
+        </Stack>
+      )}
     </Box>
   );
 }
