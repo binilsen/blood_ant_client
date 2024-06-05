@@ -38,6 +38,7 @@ const ManageDose = ({ id, open, closeHandler }) => {
         remarks: data.remarks,
         medicine: data.medicine,
         status: data.status,
+        late_night: data.late_night,
       }),
     select: (data) => data.data,
     enabled: Boolean(id),
@@ -87,6 +88,12 @@ const ManageDose = ({ id, open, closeHandler }) => {
                 label="Night"
                 control={register}
                 name="night"
+                errors={errors}
+              />
+              <AppInput
+                label="Late Night"
+                control={register}
+                name="late_night"
                 errors={errors}
               />
               <AppInput

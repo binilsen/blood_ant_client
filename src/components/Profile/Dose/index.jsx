@@ -77,6 +77,19 @@ const Dose = () => {
             <Typography variant="overline">{data.night || "N/A"}</Typography>
           </Grid>
           <Grid item md={6} p={1}>
+            <Typography variant="title2">Late Night Dose</Typography>
+          </Grid>
+          <Grid
+            item
+            md={6}
+            p={1}
+            sx={{ display: "flex", justifyContent: { md: "end", sm: "start" } }}
+          >
+            <Typography variant="overline">
+              {data.late_night || "N/A"}
+            </Typography>
+          </Grid>
+          <Grid item md={6} p={1}>
             <Typography variant="title2">Remark</Typography>
           </Grid>
           <Grid

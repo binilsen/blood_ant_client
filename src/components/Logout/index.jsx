@@ -15,7 +15,7 @@ const Logout = () => {
     onError: () => toast.error("Something went wrong"),
   });
   return (
-    <Stack spacing={1}>
+    <>
       <Typography variant="h6">Actions</Typography>
       <hr />
       <Stack direction="row">
@@ -28,7 +28,7 @@ const Logout = () => {
           Logout
         </Button>
       </Stack>
-    </Stack>
+    </>
   );
 };
 export default Logout;

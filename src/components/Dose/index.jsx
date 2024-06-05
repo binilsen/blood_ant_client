@@ -25,7 +25,7 @@ const Dose = () => {
   const [open, setOpen] = useState(false);
   const closeHandler = () => setOpen(false);
   return (
-    <Stack p={3}>
+    <>
       <Card sx={{ bgcolor: "primary.light", color: "wheat" }}>
         <CardActionArea>
           <CardHeader
@@ -79,6 +79,14 @@ const Dose = () => {
                       </Typography>
                     }
                   />
+                  <Chip
+                    color="warning"
+                    label={
+                      <Typography variant="overline">
+                        Late Night: {activeDose.data.late_night} unit
+                      </Typography>
+                    }
+                  />
                 </Stack>
               </Stack>
             )}
@@ -102,7 +110,7 @@ const Dose = () => {
           closeHandler={closeHandler}
         />
       )}
-    </Stack>
+    </>
   );
 };
 
