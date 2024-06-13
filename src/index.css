@@ -1,7 +1,8 @@
 html,
-body, #root {
+body,
+#root {
   font-family: Hack, monospace;
-  min-height: 90vh;
+  height: 100%;
   margin: 0;
   padding: 0;
 }

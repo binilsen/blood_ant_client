@@ -11,7 +11,7 @@ const AppLoader = ({ open }) => {
       position="absolute"
       zIndex={9999}
       bgcolor="#F0F4FF"
-      height="100vh"
+      height="100%"
       display={visible || Boolean(open) ? "flex" : "none"}
       justifyContent="center"
       alignItems="center"

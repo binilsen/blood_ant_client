@@ -40,9 +40,11 @@ const Logs = () => {
     tag: "",
     page: 1,
   });
-  const { data, refetch } = useQuery(["userLogs", params], () =>
-    userLogs({ params: params }),{
-      refetchOnWindowFocus: false
+  const { data, refetch } = useQuery(
+    ["userLogs", params],
+    () => userLogs({ params: params }),
+    {
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -73,8 +75,8 @@ const Logs = () => {
     <>
       <Typography variant="h5">Recent Logs</Typography>
       {appFilters.data && (
-        <Grid container p={2}>
-          <Grid item md={4} px={1}>
+        <Grid container gap={1} p={2} justifyContent="space-between">
+          <Grid item xs={12} sm={12} md={4}>
             <FormControl fullWidth variant="filled">
               <InputLabel>Session</InputLabel>
               <Select
@@ -98,7 +100,7 @@ const Logs = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item md={4} px={1}>
+          <Grid item xs={12} sm={12} md={4}>
             <FormControl fullWidth variant="filled">
               <InputLabel>Bookmark</InputLabel>
               <Select
@@ -122,7 +124,7 @@ const Logs = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item md={4}>
+          <Grid item xs={12} sm={12} md={3}>
             <FormControl fullWidth variant="filled">
               <InputLabel>Result</InputLabel>
               <Select

@@ -12,7 +12,7 @@ const qClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={qClient}>
-      <AppLoader />
+      <AppLoader  />
       <ToastContainer />
       <RouterProvider router={routes}></RouterProvider>
     </QueryClientProvider>
