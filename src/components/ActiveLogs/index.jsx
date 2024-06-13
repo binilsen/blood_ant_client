@@ -13,8 +13,8 @@ import {
 import { useQuery } from "react-query";
 import { userActiveLogs } from "../../services";
 import dayjs from "dayjs";
-import LogChart from "../shared/LogChart";
 import { useState } from "react";
+import TodaysLog from "../shared/TodaysLog";
 
 const COLORS = {
   normal: "success.light",
@@ -27,6 +27,7 @@ const ActiveLogs = () => {
     select: (data) => data.data,
     refetchOnWindowFocus: false,
   });
+
   return (
     <Stack spacing={2}>
       <Stack
@@ -49,7 +50,7 @@ const ActiveLogs = () => {
         />
       </Stack>
       {isVisual ? (
-        <LogChart active={true} />
+        <TodaysLog />
       ) : (
         <Grid container justifyContent="center" my={2}>
           {data && data.length == 0 && (

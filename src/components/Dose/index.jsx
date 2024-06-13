@@ -46,7 +46,10 @@ const Dose = () => {
                 <Typography variant="h6" fontWeight="bold">
                   Medication: {activeDose.data.medicine || "N/A"}
                 </Typography>
-                <Stack gap={2} direction="row">
+                <Stack
+                  gap={2}
+                  sx={{ flexDirection: { xs: "column", md: "row" } }}
+                >
                   <Chip
                     color="warning"
                     label={

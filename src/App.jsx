@@ -48,6 +48,10 @@ function App() {
     if (val != 5) localStorage.setItem("ba-active-tab", val);
     setValue(val);
   };
+
+  const responsiveHeight = visible ? "200px" : "100%";
+  const responsiveOverflow = visible ? "hidden" : "scroll";
+
   return (
     <Box>
       <Stack
@@ -77,28 +81,30 @@ function App() {
           <Tab label={"Logout"} icon={<Logout />} />
         </Tabs>
       )}
-      {!visible && (
-        <Stack spacing={2}>
-          <TabPanel value={value} index={0}>
-            <Profile />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Dashboard />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <Logs />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <Dose />
-          </TabPanel>
-          <TabPanel value={value} index={4}>
-            <Settings />
-          </TabPanel>
-          <TabPanel value={value} index={5}>
-            <AppLogout />
-          </TabPanel>
-        </Stack>
-      )}
+
+      <Stack
+        spacing={2}
+        sx={{ height: responsiveHeight, overflowY: responsiveOverflow }}
+      >
+        <TabPanel value={value} index={0}>
+          <Profile />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Dashboard />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Logs />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Dose />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <Settings />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <AppLogout />
+        </TabPanel>
+      </Stack>
     </Box>
   );
 }

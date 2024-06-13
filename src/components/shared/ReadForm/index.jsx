@@ -61,7 +61,7 @@ const ReadForm = () => {
   return (
     <form onSubmit={handleSubmit(mutate)}>
       <Grid container borderBottom={1}>
-        <Grid item sm={12} md={6} p={1}>
+        <Grid item xs={12} sm={12} md={6} p={1}>
           <AppInput
             label="Value"
             control={register}
@@ -69,7 +69,7 @@ const ReadForm = () => {
             errors={errors}
           />
         </Grid>
-        <Grid item sm={12} md={6} p={1}>
+        <Grid item xs={12} sm={12} md={6} p={1}>
           {data && (
             <AppSelect
               data={data?.sessions}
@@ -80,7 +80,7 @@ const ReadForm = () => {
           )}{" "}
         </Grid>
 
-        <Grid item sm={12} md={12} p={1}>
+        <Grid item xs={12} sm={12} md={12} p={1}>
           <TextField
             variant="filled"
             label="Remark"
@@ -88,7 +88,7 @@ const ReadForm = () => {
             fullWidth
           />
         </Grid>
-        <Grid item sm={12} md={12} p={1}>
+        <Grid item xs={12} sm={12} md={12} p={1}>
           <Controller
             control={control}
             name="tag"
@@ -103,7 +103,7 @@ const ReadForm = () => {
             )}
           />
         </Grid>
-        <Grid item md={12} sm={12} textAlign="center" p={1}>
+        <Grid item xs={12} md={12} sm={12} textAlign="center" p={1}>
           <Fab variant="extended" color="error" size="large" type="submit">
             <Save sx={{ mr: 1 }} />
             Save
